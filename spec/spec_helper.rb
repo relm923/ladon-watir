@@ -1,11 +1,8 @@
+require 'coveralls'
 require 'rspec'
-require 'simplecov'
 require 'watir'
 
-SimpleCov.start do
-  add_filter '/spec/'
-  add_filter '/vendor/'
-end
+Coveralls.wear!
 
 class FakeWatirBrowser < Watir::Browser
   def initialize
