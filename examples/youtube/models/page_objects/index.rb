@@ -1,4 +1,3 @@
-require 'ladon'
 require 'ladon/watir'
 
 # Represents the main page of youtube.com.

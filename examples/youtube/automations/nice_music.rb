@@ -1,4 +1,3 @@
-require 'ladon'
 require 'ladon/watir'
 require 'models/page_objects/index'
 
