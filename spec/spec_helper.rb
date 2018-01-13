@@ -7,6 +7,7 @@ else
 end
 
 require 'rspec'
+require 'watir'
 
 class FakeWatirBrowser < Watir::Browser
   def initialize
