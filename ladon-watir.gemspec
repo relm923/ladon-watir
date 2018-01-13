@@ -19,10 +19,10 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'useragent', '~> 0.16.3'
   gem.add_runtime_dependency 'watir', '6.10.2'
 
-  gem.add_development_dependency 'coveralls', '~> 0.7'
+  gem.add_development_dependency 'coveralls', '~> 0.7' # Coverage in CI
   gem.add_development_dependency 'rake', '~> 11.3' # for convenient rake tasks
   gem.add_development_dependency 'rspec', '~> 3.6' # for specs
   gem.add_development_dependency 'rubocop', '~> 0.49' # for linting
   gem.add_development_dependency 'rubygems-tasks', '~> 0.2'
-  gem.add_development_dependency 'simplecov', '~> 0.15'
+  gem.add_development_dependency 'simplecov', '~> 0.15' # Coverage locally
 end

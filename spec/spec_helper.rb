@@ -1,8 +1,12 @@
-require 'coveralls'
-require 'rspec'
-require 'watir'
+if ENV['TRAVIS']
+  require 'coveralls'
+  Coveralls.wear!
+else
+  require 'simplecov'
+  SimpleCov.start
+end
 
-Coveralls.wear!
+require 'rspec'
 
 class FakeWatirBrowser < Watir::Browser
   def initialize
