@@ -10,3 +10,5 @@ jobs:
     - script: bundle exec rake spec
     - stage: build
       script: bundle exec rake build
+
+after_success: coveralls
