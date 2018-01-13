@@ -1,0 +1,33 @@
+version: '2.2'
+services:
+  ladon-watir:
+    build: .
+    volumes:
+      - ./logs:/logs
+    depends_on:
+      selenium-chrome:
+        condition: service_healthy
+    command: >
+      ladon-run
+        -a ./examples/github/automations/repo.rb
+        -p /logs/ladon.json
+        -f output_file:/logs/watir.json,grid_url:http://selenium-hub:4444/wd/hub
+  selenium-chrome:
+    image: selenium/node-chrome    
+    # Uncomment to debug via VNC
+    ########################################
+    # image: selenium/node-chrome-debug 
+    # ports:
+    #   - 5900:5900
+    ########################################
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium-hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    healthcheck:
+      test: "exit 0"
+    depends_on:
+      - selenium-hub
+  selenium-hub:
+    image: selenium/hub
+    ports:
+      - 4444:4444

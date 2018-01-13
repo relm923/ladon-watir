@@ -1,0 +1,7 @@
+.git*
+log/*
+tmp/*
+coverage/*
+Dockerfile
+*.md
+.travis.yml
