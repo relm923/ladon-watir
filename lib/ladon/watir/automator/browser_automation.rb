@@ -19,6 +19,7 @@ module Ladon
       attr_reader :screenshots
 
       BROWSER_TYPES = %i[chrome firefox safari ie].freeze
+      HEADLESS_BROWERS = %i[chrome firefox].freeze
       PLATFORMS = %i[any windows mac linux].freeze
       NA_STRING = 'N/A'.freeze
       GRID_REG_REL_PATH = '/wd/hub'.freeze # grid hub URL fragment
@@ -59,6 +60,20 @@ module Ladon
         @browser_type = browser_type.to_sym
         halting_assert('Browser requested must be valid') do
           BROWSER_TYPES.include?(@browser_type)
+        end
+      end
+
+      HEADLESS_FLAG = make_flag(
+        :headless,
+        description: 'If set run browser in headless mode',
+        default: false
+      ) do |headless|
+        halting_assert('Headless must be a boolean') { headless.nil? || headless == false }
+
+        @headless = headless.nil?
+        halting_assert('Browser must support headless mode') do
+          self.handle_flag(BROWSER_FLAG)
+          HEADLESS_BROWERS.include?(@browser_type)
         end
       end
 
@@ -132,6 +147,7 @@ module Ladon
       def build_browser
         self.handle_flag(BROWSER_FLAG)
         self.handle_flag(GRID_URL_FLAG)
+        self.handle_flag(HEADLESS_FLAG)
         self.handle_flag(TIMEOUT_FLAG)
 
         return local_browser if @grid_url.nil?
@@ -240,7 +256,8 @@ module Ladon
       # Constructs a browser to be driven locally.
       # @return [Ladon::Watir::Browser] The new browser object.
       def local_browser
-        return Ladon::Watir::Browser.new_local(type: @browser_type)
+        return Ladon::Watir::Browser.new_local(type: @browser_type,
+                                               headless: @headless)
       end
 
       # Constructs a browser to be driven remotely on a grid.

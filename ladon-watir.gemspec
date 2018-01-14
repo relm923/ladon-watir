@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.description = <<-HEREDOC
     Use Ladon and Watir to automate end-to-end web application workflows.
   HEREDOC
-  gem.authors     = ['Reagan Eggert', 'Kevin Weaver', 'Shayne Snow']
+  gem.authors     = ['Reagan Elm', 'Kevin Weaver', 'Shayne Snow']
   gem.email       = 'kweaver@athenahealth.com'
   gem.files       = Dir['lib/**/*.rb']
   gem.homepage    = 'http://rubygems.org/gems/ladon-watir'

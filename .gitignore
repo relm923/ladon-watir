@@ -9,6 +9,7 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+/logs/
 
 # Used by dotenv library to load environment variables.
 # .env
@@ -52,3 +53,6 @@ Gemfile.lock
 
 # Specific to byebug:
 .byebug_history
+
+# VSCode
+.vscode

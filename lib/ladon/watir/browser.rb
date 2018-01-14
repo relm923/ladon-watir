@@ -9,8 +9,8 @@ module Ladon
       # Constructs a browser to be driven locally.
       #
       # @return [Ladon::Watir::Browser] The new browser object.
-      def self.new_local(type:)
-        return self.new(type)
+      def self.new_local(type:, headless: false)
+        return self.new(type, headless: headless)
       end
 
       # Constructs a browser to be driven remotely on a grid.

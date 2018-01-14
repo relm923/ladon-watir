@@ -195,6 +195,38 @@ RSpec.describe Ladon::Watir::BrowserAutomation do
     end
   end
 
+  describe '#build_browser' do
+    context 'when headless is set' do
+      let(:config) do
+        Ladon::Config.new(flags: { browser: 'chrome', headless: nil })
+      end
+
+      let(:automation) { Ladon::Watir::BrowserAutomation.new(config: config) }
+
+      it 'New browser is created with headless capability' do
+        allow(FakeWatirBrowser).to receive(:new)
+        expect(Ladon::Watir::Browser).to receive(:new_local).with(type: :chrome, headless: true)
+
+        automation.build_browser
+      end
+    end
+
+    context 'when headless is not set' do
+      let(:config) do
+        Ladon::Config.new(flags: { browser: 'chrome' })
+      end
+
+      let(:automation) { Ladon::Watir::BrowserAutomation.new(config: config) }
+
+      it 'New browser is created with headless capability' do
+        allow(FakeWatirBrowser).to receive(:new)
+        expect(Ladon::Watir::Browser).to receive(:new_local).with(type: :chrome, headless: false)
+
+        automation.build_browser
+      end
+    end
+  end
+
   describe '#proxy_details' do
     let(:config) { Ladon::Config.new(log_level: :WARN) }
 
